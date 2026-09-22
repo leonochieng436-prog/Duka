@@ -1,0 +1,92 @@
+import type { Metadata } from "next";
+import { Geist_Mono, Inter, Playfair_Display } from "next/font/google";
+import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://dukaos.com";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(appUrl),
+  title: "DukaOS | POS, Inventory & Business Management Software for Kenyan Businesses",
+  description:
+    "DukaOS is a modern POS, inventory, purchases, customer credit, supplier, and reporting system built for growing Kenyan retail and service businesses.",
+  applicationName: "DukaOS",
+  keywords: [
+    "POS system Kenya",
+    "inventory management software Kenya",
+    "retail POS Kenya",
+    "business management system Kenya",
+    "small business POS",
+    "multi-branch POS Kenya",
+    "customer credit management",
+    "supplier management software",
+    "DukaOS",
+  ],
+  authors: [{ name: "DukaOS" }],
+  creator: "DukaOS",
+  publisher: "DukaOS",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: "/images/DukaOS-logo.png",
+    shortcut: "/images/DukaOS-logo.png",
+    apple: "/images/DukaOS-logo.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_KE",
+    url: appUrl,
+    siteName: "DukaOS",
+    title: "DukaOS | POS, Inventory & Business Management Software for Kenyan Businesses",
+    description:
+      "Manage sales, inventory, purchases, customer credit, warehouses, branches, and reports in one connected platform built for Kenyan businesses.",
+    images: [{ url: "/images/DukaOS-logo2.png", width: 1200, height: 630, alt: "DukaOS business operating system" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@DukaOS",
+    creator: "@DukaOS",
+    title: "DukaOS | POS, Inventory & Business Management Software for Kenyan Businesses",
+    description:
+      "Manage sales, inventory, purchases, customer credit, warehouses, branches, and reports in one connected platform built for Kenyan businesses.",
+    images: ["/images/DukaOS-logo2.png"],
+  },
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${playfairDisplay.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
+}
