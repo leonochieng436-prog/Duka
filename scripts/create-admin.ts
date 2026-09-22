@@ -2,7 +2,7 @@ import { rawPrisma } from "../src/server/db/client";
 import { hashPassword } from "../src/server/auth/password";
 
 async function main() {
-  const email = "admin@dukaos.local";
+  const email = "admin@gmail12.com";
   const name = "Main Administrator";
 
   const password = process.env.ADMIN_PASSWORD;

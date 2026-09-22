@@ -40,13 +40,13 @@ async function seedPermissionCatalog() {
 }
 
 async function seedPlatformAdmin() {
-  const password = process.env.SEED_ADMIN_PASSWORD ?? "admin@123";
+  const password = process.env.SEED_ADMIN_PASSWORD ?? "admin@254";
   await prisma.platformAdmin.upsert({
-    where: { email: "admin@gmail.com" },
+    where: { email: "admin@gmail12.com" },
     update: { passwordHash: await hashPassword(password), name: "DukaOS Administrator", isActive: true },
-    create: { email: "admin@gmail.com", name: "DukaOS Administrator", passwordHash: await hashPassword(password) },
+    create: { email: "admin@gmail12.com", name: "DukaOS Administrator", passwordHash: await hashPassword(password) },
   });
-  console.log(`Platform admin: admin@gmail.com / ${password}`);
+  console.log(`Platform admin: admin@gmail12.com / ${password}`);
 }
 
 function humanize(key: string) {
