@@ -140,36 +140,66 @@ export default async function SalesPage({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-5 shadow-[0_8px_24px_rgba(18,23,26,0.04)]">
+      <div className="dashboard-hero rounded-[var(--radius-lg)] border border-primary/20 p-5 text-white shadow-[0_14px_30px_rgba(15,123,108,0.14)]">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">SALES</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75">SALES</p>
             <h1 className="mt-2 text-2xl font-semibold tracking-tight">Today&apos;s Sales</h1>
           </div>
           <div className="flex items-center gap-2">
-            <button type="button" className="inline-flex items-center gap-2 rounded-[var(--radius-sm)] border border-border bg-surface-muted px-3 py-2 text-sm font-medium text-foreground hover:bg-surface">
+            <button type="button" className="inline-flex items-center gap-2 rounded-[var(--radius-sm)] border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white hover:bg-white/20">
               <Download size={15} /> Export
             </button>
-            <button type="button" className="inline-flex items-center gap-2 rounded-[var(--radius-sm)] border border-border bg-surface-muted px-3 py-2 text-sm font-medium text-foreground hover:bg-surface">
+            <button type="button" className="inline-flex items-center gap-2 rounded-[var(--radius-sm)] border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white hover:bg-white/20">
               <Filter size={15} /> Filters
             </button>
           </div>
         </div>
 
         <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <div className="rounded-[var(--radius-md)] border border-border bg-surface-muted p-4">
-            <p className="text-[12px] text-muted-foreground">Gross sales</p>
+          <div className="rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
+            <p className="text-[12px] text-white/75">Gross sales</p>
             <p className="mt-3 font-tabular text-2xl font-semibold">{money.format(totalSales)}</p>
           </div>
-          <div className="rounded-[var(--radius-md)] border border-border bg-surface-muted p-4">
-            <p className="text-[12px] text-muted-foreground">Transactions</p>
+          <div className="rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
+            <p className="text-[12px] text-white/75">Transactions</p>
             <p className="mt-3 font-tabular text-2xl font-semibold">{sales.length}</p>
           </div>
-          <div className="rounded-[var(--radius-md)] border border-border bg-surface-muted p-4">
-            <p className="text-[12px] text-muted-foreground">Average sale</p>
+          <div className="rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
+            <p className="text-[12px] text-white/75">Average sale</p>
             <p className="mt-3 font-tabular text-2xl font-semibold">{money.format(avgSale)}</p>
           </div>
         </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <p className="text-[12px] text-muted-foreground">Collected today</p>
+              <Wallet size={17} className="text-primary" />
+            </div>
+            <p className="mt-4 font-tabular text-xl font-semibold">{money.format(totalCollected)}</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <p className="text-[12px] text-muted-foreground">Refunds</p>
+              <ShieldCheck size={17} className="text-primary" />
+            </div>
+            <p className="mt-4 font-tabular text-xl font-semibold">{money.format(0)}</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <p className="text-[12px] text-muted-foreground">Corrections</p>
+              <Filter size={17} className="text-primary" />
+            </div>
+            <p className="mt-4 font-tabular text-xl font-semibold">0</p>
+          </CardContent>
+        </Card>
       </div>
 
       <SalesFilters
@@ -206,7 +236,7 @@ export default async function SalesPage({
             const itemCount = sale.items.reduce((sum, item) => sum + Number(item.quantity), 0);
 
             return (
-              <div key={sale.id} className="grid gap-3 border-b border-border px-5 py-4 last:border-0 lg:grid-cols-[1.1fr_1fr_0.9fr_0.8fr_0.8fr_0.8fr_0.9fr_0.8fr] lg:items-center">
+              <div key={sale.id} className="grid gap-3 border-b border-border px-5 py-4 last:border-0 lg:grid-cols-[1.1fr_1fr_0.9fr_0.8fr_0.8fr_0.8fr_0.9fr_0.8fr] lg:items-center lg:border-b-2">
                 <div className="min-w-0">
                   <Link href={`/dashboard/sales/${sale.id}`} className="block truncate text-sm font-semibold text-primary hover:underline">
                     {sale.receiptNumber}
@@ -253,46 +283,12 @@ export default async function SalesPage({
                   </Link>
                 </div>
 
-                <div className="mt-3 flex items-center justify-end gap-2 lg:col-span-8">
-                  <Link href={`/dashboard/sales/${sale.id}`} className="inline-flex items-center justify-center rounded-[var(--radius-sm)] border border-border bg-surface-muted px-3 py-2 text-sm font-medium text-foreground hover:bg-surface">
-                    View transaction
-                  </Link>
-                </div>
               </div>
             );
           })
         )}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <p className="text-[12px] text-muted-foreground">Collected today</p>
-              <Wallet size={17} className="text-primary" />
-            </div>
-            <p className="mt-4 font-tabular text-xl font-semibold">{money.format(totalCollected)}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <p className="text-[12px] text-muted-foreground">Refunds</p>
-              <ShieldCheck size={17} className="text-primary" />
-            </div>
-            <p className="mt-4 font-tabular text-xl font-semibold">{money.format(0)}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <p className="text-[12px] text-muted-foreground">Corrections</p>
-              <Filter size={17} className="text-primary" />
-            </div>
-            <p className="mt-4 font-tabular text-xl font-semibold">0</p>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   );
 }

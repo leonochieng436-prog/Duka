@@ -39,6 +39,33 @@
   --radius-lg: 14px;
 }
 
+:root.dark {
+  color-scheme: dark;
+  --background: #121918;
+  --surface: #1b2422;
+  --surface-muted: #25302d;
+  --foreground: #edf3f0;
+  --muted-foreground: #a7b5b0;
+  --border: #34423e;
+  --border-strong: #4a5a55;
+
+  --primary: #4fc2aa;
+  --primary-hover: #6ed3bd;
+  --primary-foreground: #08231d;
+  --primary-tint: #173a33;
+
+  --danger: #f08a82;
+  --danger-tint: #492421;
+  --warning: #e7bd68;
+  --warning-tint: #44371d;
+  --success: #68c995;
+  --success-tint: #1d3d2d;
+  --info: #7eb4ef;
+  --info-tint: #1d344d;
+
+  --ring: #4fc2aa;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
@@ -73,6 +100,23 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+input,
+select,
+textarea {
+  color-scheme: inherit;
+}
+
+:root.dark .auth-form-pane {
+  background: var(--background);
+}
+
+:root.dark .login-form input:not([type="checkbox"]),
+:root.dark .admin-login-form input:not([type="checkbox"]),
+:root.dark .register-form input:not([type="checkbox"]),
+:root.dark .register-form select {
+  background: var(--surface);
 }
 
 h1,
@@ -203,6 +247,30 @@ h6 {
 .font-tabular {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
+}
+
+/* Keep data tables visually grouped without changing printable receipts. */
+table:not(.receipt-items) {
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+}
+
+table:not(.receipt-items) th,
+table:not(.receipt-items) td {
+  border-right: 1px solid var(--border);
+}
+
+table:not(.receipt-items) th:last-child,
+table:not(.receipt-items) td:last-child {
+  border-right: 0;
+}
+
+table:not(.receipt-items) thead tr {
+  border-bottom: 1px solid var(--border-strong);
+}
+
+table:not(.receipt-items) tbody tr + tr {
+  border-top: 1px solid var(--border);
 }
 
 .dashboard-hero {

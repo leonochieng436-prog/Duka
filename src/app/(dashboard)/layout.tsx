@@ -7,6 +7,7 @@ import { NotificationBell, type DashboardNotification } from "@/components/notif
 import { DashboardNav, type DashboardNavItem } from "./dashboard/dashboard-nav";
 import { MobileDashboardNav } from "./dashboard/mobile-dashboard-nav";
 import { SupportAssistant } from "@/components/support-assistant";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { PLAN_CATALOG, type Plan } from "@/lib/billing";
 import {
   LogOut,
@@ -153,6 +154,7 @@ export default async function DashboardLayout({
             <p className="text-sm font-semibold">All Branches <span className="font-normal text-muted-foreground">· {branchCount} active location{branchCount === 1 ? "" : "s"}</span></p>
           </div>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <NotificationBell notifications={notifications} />
             <span className="hidden text-right sm:block"><span className="block text-sm font-semibold">{user.name}</span><span className="block text-[11px] text-muted-foreground">Owner</span></span>
             <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-tint text-sm font-bold text-primary">{user.name.slice(0, 1).toUpperCase()}</span>
