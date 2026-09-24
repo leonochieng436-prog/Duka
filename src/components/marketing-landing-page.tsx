@@ -636,41 +636,54 @@ export function MarketingLandingPage() {
           </button>
         </div>
         {menuOpen && (
-          <div className="border-t border-border bg-white px-5 py-4 lg:hidden">
-            <nav className="flex flex-col gap-1 text-sm">
-              {navItems.map(([label, href]) => (
-                <a
-                  key={href}
-                  href={href}
+          <div className="mobile-nav-backdrop fixed inset-0 z-[60] lg:hidden">
+            <button
+              type="button"
+              aria-label="Close navigation menu"
+              className="absolute inset-0 bg-[#0f172a]/30"
+              onClick={() => setMenuOpen(false)}
+            />
+            <aside className="mobile-nav-panel relative flex h-full w-[min(84vw,360px)] flex-col border-r border-border bg-white p-5 shadow-[16px_0_40px_rgba(15,23,42,0.18)]">
+              <div className="flex items-center justify-between border-b border-border pb-4">
+                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Menu</span>
+                <button
+                  type="button"
+                  aria-label="Close navigation menu"
+                  className="grid h-10 w-10 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-md px-3 py-3"
                 >
-                  {label}
-                </a>
-              ))}
-              {navItems.map(([label, href]) => (
+                  <X size={19} />
+                </button>
+              </div>
+              <nav className="flex flex-col gap-1 pt-4 text-sm">
+                {navItems.map(([label, href]) => (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-md px-3 py-3 font-medium text-foreground transition-colors hover:bg-primary/5 hover:text-primary"
+                  >
+                    {label}
+                  </a>
+                ))}
+              </nav>
+              <div className="mt-auto space-y-2 border-t border-border pt-4">
                 <Link
-                  key={href}
-                  href={href}
+                  href="/login"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-md px-3 py-3"
+                  className="flex rounded-md border border-border px-3 py-3 font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
                 >
-                  {label}
+                  Log in
                 </Link>
-              ))}
-              <Link
-                href="/login"
-                className="mt-2 px-3 py-3 font-medium text-primary"
-              >
-                Log in
-              </Link>
-              <Link
-                href="/register"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 font-semibold text-white"
-              >
-                Get started <ArrowRight size={15} />
-              </Link>
-            </nav>
+                <Link
+                  href="/register"
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 font-semibold text-white"
+                >
+                  Get started <ArrowRight size={15} />
+                </Link>
+              </div>
+            </aside>
           </div>
         )}
       </header>
