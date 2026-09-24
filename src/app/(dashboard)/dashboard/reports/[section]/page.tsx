@@ -223,10 +223,10 @@ export default async function ReportSectionPage({
   const categorySlices = [...categoryTotals.entries()].sort((a, b) => b[1].minus(a[1]).toNumber()).slice(0, 5).map(([name, value], index) => ({ label: name, value: value.toNumber(), color: chartColors[index] }));
 
   const summaryCards = [
-    { label: "Total sales", value: money(currentSalesTotal), change: `${percentDelta(currentSalesTotal, priorSalesTotal)} vs previous month` },
-    { label: "Net revenue", value: money(currentNetRevenue), change: `${percentDelta(currentNetRevenue, priorNetRevenue)} vs previous month` },
-    { label: "Transactions", value: sales.length.toString(), change: `${sales.length > 0 ? percentDelta(new Decimal(sales.length), new Decimal(previousSales.length || 0)) : "0.0%"} vs previous month` },
-    { label: "Estimated profit", value: money(estimatedProfit), change: `${percentDelta(estimatedProfit, priorSalesTotal.minus(priorCogs).minus(currentExpenses))} vs previous month` },
+    { label: "Total sales", value: money(currentSalesTotal), change: `${percentDelta(currentSalesTotal, priorSalesTotal)} vs previous month`, cardTone: "metric-card-sales" },
+    { label: "Net revenue", value: money(currentNetRevenue), change: `${percentDelta(currentNetRevenue, priorNetRevenue)} vs previous month`, cardTone: "metric-card-revenue" },
+    { label: "Transactions", value: sales.length.toString(), change: `${sales.length > 0 ? percentDelta(new Decimal(sales.length), new Decimal(previousSales.length || 0)) : "0.0%"} vs previous month`, cardTone: "metric-card-customers" },
+    { label: "Estimated profit", value: money(estimatedProfit), change: `${percentDelta(estimatedProfit, priorSalesTotal.minus(priorCogs).minus(currentExpenses))} vs previous month`, cardTone: "metric-card-profit" },
   ];
 
   const rangeHref = (key: string) => {
@@ -337,7 +337,7 @@ export default async function ReportSectionPage({
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {summaryCards.map((metric) => (
-          <Card key={metric.label} className="metric-card">
+          <Card key={metric.label} className={`metric-card ${metric.cardTone}`}>
             <CardContent className="p-4">
               <div className="flex items-start justify-between gap-3">
                 <div>

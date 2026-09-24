@@ -65,25 +65,25 @@ export default async function RegisterSessionPage({ params }: { params: Promise<
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <Card>
+        <Card className="metric-card metric-card-customers">
           <CardContent className="p-4">
             <p className="text-[11px] text-muted-foreground">Cashier</p>
             <p className="mt-2 text-lg font-semibold">{session.user.name}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="metric-card metric-card-sales">
           <CardContent className="p-4">
             <p className="text-[11px] text-muted-foreground">Opened</p>
             <p className="mt-2 text-lg font-semibold">{session.openedAt.toLocaleDateString("en-KE")}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="metric-card metric-card-profit">
           <CardContent className="p-4">
             <p className="text-[11px] text-muted-foreground">Expected cash</p>
             <p className="mt-2 text-lg font-semibold font-tabular">{formatMoney(summary.expectedCash)}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="metric-card metric-card-danger">
           <CardContent className="p-4">
             <p className="text-[11px] text-muted-foreground">Actual cash</p>
             <p className="mt-2 text-lg font-semibold font-tabular">{formatMoney(session.actualBalance?.toString() ?? "0")}</p>

@@ -81,7 +81,7 @@ export default async function CreditPage() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        <Card>
+        <Card className="metric-card metric-card-danger">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <p className="text-[12px] text-muted-foreground">Outstanding balances</p>
@@ -92,7 +92,7 @@ export default async function CreditPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="metric-card metric-card-revenue">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <p className="text-[12px] text-muted-foreground">Total receivables</p>
@@ -103,7 +103,7 @@ export default async function CreditPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="metric-card metric-card-customers">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <p className="text-[12px] text-muted-foreground">Credit sales</p>

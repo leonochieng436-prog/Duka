@@ -157,15 +157,15 @@ export default async function SalesPage({
         </div>
 
         <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <div className="rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
+          <div className="metric-card metric-card-sales rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
             <p className="text-[12px] text-white/75">Gross sales</p>
             <p className="mt-3 font-tabular text-2xl font-semibold">{money.format(totalSales)}</p>
           </div>
-          <div className="rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
+          <div className="metric-card metric-card-customers rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
             <p className="text-[12px] text-white/75">Transactions</p>
             <p className="mt-3 font-tabular text-2xl font-semibold">{sales.length}</p>
           </div>
-          <div className="rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
+          <div className="metric-card metric-card-profit rounded-[var(--radius-md)] border border-white/20 bg-white/10 p-4">
             <p className="text-[12px] text-white/75">Average sale</p>
             <p className="mt-3 font-tabular text-2xl font-semibold">{money.format(avgSale)}</p>
           </div>

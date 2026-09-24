@@ -17,11 +17,11 @@ export default async function InvoicesPage() {
     ctx.db.invoice.findMany({ include: { customer: true }, orderBy: { createdAt: "desc" }, take: 100 }),
   ]);
   const totals = invoices.reduce((sum, invoice) => ({ invoiced: sum.invoiced.plus(invoice.total.toString()), paid: sum.paid.plus(invoice.amountPaid.toString()), due: sum.due.plus(invoice.amountDue.toString()), overdue: sum.overdue.plus(invoice.status === "OVERDUE" ? invoice.amountDue.toString() : 0) }), { invoiced: new Decimal(0), paid: new Decimal(0), due: new Decimal(0), overdue: new Decimal(0) });
-  const statCards: { label: string; value: Decimal }[] = [
-    { label: "Total invoiced", value: totals.invoiced },
-    { label: "Paid", value: totals.paid },
-    { label: "Outstanding", value: totals.due },
-    { label: "Overdue", value: totals.overdue },
+  const statCards: { label: string; value: Decimal; cardTone: string }[] = [
+    { label: "Total invoiced", value: totals.invoiced, cardTone: "metric-card-sales" },
+    { label: "Paid", value: totals.paid, cardTone: "metric-card-revenue" },
+    { label: "Outstanding", value: totals.due, cardTone: "metric-card-warning" },
+    { label: "Overdue", value: totals.overdue, cardTone: "metric-card-danger" },
   ];
   const today = new Date();
   const issueDate = today.toISOString().slice(0, 10);
